@@ -3,13 +3,20 @@ const player2 = "2";
 var playTime = player1;
 var gameOver = false;
 var count = 0;
+var scorePlayer1 = 0;
+var scorePlayer2 = 0;
+const cell = document.getElementsByClassName("cell");
 
 
 refreshPainel();
 initCell();
 
+if(gameOver!=true)
+    loadScore();
+
 
 function refreshPainel(){
+
     if(gameOver){return;}
 
     if(playTime == player1){
@@ -26,7 +33,6 @@ function refreshPainel(){
 
 function initCell(){
 
-    var cell = document.getElementsByClassName("cell");
     for (let i = 0; i < cell.length; i++) {
        cell[i].addEventListener("click", function(){
 
@@ -51,19 +57,18 @@ function initCell(){
     }
 }
 
-
 async function checkWinner(){
-    let a1 = document.getElementById("a1").getAttribute("shot");
-    let a2 = document.getElementById("a2").getAttribute("shot");
-    let a3 = document.getElementById("a3").getAttribute("shot");
+   let a1 = document.getElementById("a1").getAttribute("shot");
+   let a2 = document.getElementById("a2").getAttribute("shot");
+   let a3 = document.getElementById("a3").getAttribute("shot");
     
-    let b1 = document.getElementById("b1").getAttribute("shot");
-    let b2 = document.getElementById("b2").getAttribute("shot");
-    let b3 = document.getElementById("b3").getAttribute("shot");
+   let b1 = document.getElementById("b1").getAttribute("shot");
+   let b2 = document.getElementById("b2").getAttribute("shot");
+   let b3 = document.getElementById("b3").getAttribute("shot");
 
-    let c1 = document.getElementById("c1").getAttribute("shot");
-    let c2 = document.getElementById("c2").getAttribute("shot");
-    let c3 = document.getElementById("c3").getAttribute("shot");
+   let c1 = document.getElementById("c1").getAttribute("shot");
+   let c2 = document.getElementById("c2").getAttribute("shot");
+   let c3 = document.getElementById("c3").getAttribute("shot");
 
 
     let winner = "";
@@ -82,7 +87,8 @@ async function checkWinner(){
     if(winner!=""){
         gameOver = true;
         await sleep(70);
-        alert("O Vencedor foi o: '" + 'Jogador:'+  winner +"'");
+        alert("O Jogador " +  winner + " Venceu");
+        updateScore(winner);
     }
 
     count++;
@@ -93,17 +99,59 @@ async function draw(winner, count){
 
     if(winner == "" && count == 9){
         await sleep(70);
-        alert("Vish Deu Velha!");
+        alert("Vish, Deu Velha!");
     }
 }
 
 function sleep(time){
-
     return new Promise(resolve => setTimeout(resolve, time));
 }
 
 function refresh(){
+    gameOver = false;
     document.location.reload();
 }
 
+function endGame(){
+    gameOver = true;
+    document.location.reload();
+    localStorage.clear();
+}
 
+
+function loadScore(){
+    let x = document.getElementById("scorePlayer1");
+    x.innerHTML = localStorage.getItem("scorePlayer1");
+
+    let o = document.getElementById("scorePlayer2");
+    o.innerHTML = localStorage.getItem("scorePlayer2");
+}
+
+function updateScore(winner){
+    if(winner == player1){
+        let x = document.getElementById("scorePlayer1");
+        if(!localStorage.getItem("scorePlayer1")){
+            ++scorePlayer1;
+            x.innerHTML =   scorePlayer1;
+            localStorage.setItem("scorePlayer1",scorePlayer1);
+        }else{
+            scorePlayer1 = parseInt(localStorage.getItem("scorePlayer1")) + 1;
+            localStorage.setItem("scorePlayer1",scorePlayer1);
+            x.innerHTML =   scorePlayer1;
+
+        }
+    }else{
+        let o = document.getElementById("scorePlayer2");
+        if(!localStorage.getItem("scorePlayer2")){
+            ++scorePlayer2;
+            o.innerHTML =   scorePlayer2;
+            localStorage.setItem("scorePlayer2",scorePlayer2);
+        }else{
+            scorePlayer2 = parseInt(localStorage.getItem("scorePlayer2")) + 1;
+            localStorage.setItem("scorePlayer2",scorePlayer2);
+            o.innerHTML =   scorePlayer2;
+
+        }
+    }
+
+}

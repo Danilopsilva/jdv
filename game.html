@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+
+<html>
+    <head>
+        <title>Jogo da Velha</title>
+        <link rel="stylesheet" type="text/css" href="layout.css"/>   
+
+    </head>
+
+    <body>
+        <h1>JOGO DA VELHA</h1>
+
+        <div>
+            <h2>Placar</h2>
+            <div class="score-painel">
+                <div class="score-info">Jogador 1</div>
+                <div class="score-info">Jogador 2</div>
+    
+                <div class="score-info" id="scorePlayer1" pointPlayer1=""></div>
+                <div class="score-info" id="scorePlayer2" pointPlayer2=""></div>
+    
+            </div>
+
+            <div id="painel">
+                <span id="info">Vez do Jogador:</span>
+                <p id="player"></p>
+            </div>
+            <div class="board">
+                <div id="a1" class="cell" shot=""></div>
+                <div id="a2" class="cell" shot=""></div>
+                <div id="a3" class="cell" shot=""></div>
+    
+                <div id="b1" class="cell" shot=""></div>
+                <div id="b2" class="cell" shot=""></div>
+                <div id="b3" class="cell" shot=""></div>
+                
+                <div id="c1" class="cell" shot=""></div>
+                <div id="c2" class="cell" shot=""></div>
+                <div id="c3" class="cell" shot=""></div>
+            </div>
+        </div>
+ 
+        <div id="line">
+            <button type="button" class="button" onclick="refresh()">Nova Partida</button>
+            <button type="button" class="button" onclick="endGame()">Encerrar o Jogo</button>
+        </div>
+
+
+        <script type="text/javascript" src="game.js"></script>
+    </body>
+</html>

@@ -6,10 +6,25 @@
     
 }
 
+#info{
+    float: left; 
+    margin-left: 30px; 
+    margin-right: 10px; 
+    font-size: 25px; 
+    text-align:  center;
+
+}
+
 .board{
     margin: auto;
     width: 252px;
     height: 252px;    
+}
+
+.score-painel{
+    margin-right: 50px;
+    width: 240px;
+    float: left; 
 }
 
 
@@ -39,6 +54,20 @@
 #line{
  margin-top: 40px;
  text-align: center;
+}
+
+.score-info{
+    width: 80px;
+    height: 60px;
+    border: solid 1px;
+    float: left;
+    text-align: center;
+    padding-top: 20px;
+    font-size: 18px;
+}
+
+#player{
+    font-size: 25px;
 }
 
 
